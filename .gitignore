@@ -6,7 +6,10 @@
 
 # Ignore bundler config.
 /.bundle
+
+# Ignore local tools files
 /coverage
+/.pry_history
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
