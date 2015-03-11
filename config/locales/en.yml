@@ -21,3 +21,7 @@
 
 en:
   hello: "Hello world"
+  root:
+    index:
+      heading: "ProfitAndLost"
+      welcome_text: "This is ProfitAndLost"

@@ -7,8 +7,31 @@ html
     = csrf_meta_tags
 
   body class=body_class
+
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand ProfitAndLost
+
+        #navbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a Home
+            li
+              a href="#about" About
+            li
+              a href="#contact" Contact
+
+
     = render 'application/flashes'
-    = yield
+
+    .container
+      = yield
 
     = javascript_include_tag :application
     = yield :javascript
