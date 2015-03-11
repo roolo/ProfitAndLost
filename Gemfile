@@ -18,6 +18,7 @@ gem 'simple_form'
 gem 'slim-rails'
 gem 'uglifier', '>= 2.5.0'
 gem 'unicorn'
+gem 'activeresource'
 
 group :development do
   gem 'better_errors'
