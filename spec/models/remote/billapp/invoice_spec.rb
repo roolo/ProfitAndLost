@@ -1,6 +1,11 @@
 require_relative '../../../spec_helper'
 
 describe Remote::Billapp::Invoice, :type => :model do
+  before :each do
+    user = FactoryGirl.create :user, :with_ba_credentials
+
+    Remote::Billapp::Base::set_ba_credentials user
+  end
 
 
   describe '#all' do

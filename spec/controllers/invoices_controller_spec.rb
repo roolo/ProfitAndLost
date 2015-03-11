@@ -1,12 +1,30 @@
 require 'spec_helper'
 
-feature 'Invoices loading', :type => :feature do
-  scenario 'User visits invoices with BA credentials' do
-    user_with_credentials = FactoryGirl.create :user
-    form_sign_in user_with_credentials
+describe InvoicesController, :type => :controller do
+  render_views
 
-    visit invoices_index_path
+  describe 'index' do
+    it 'informs about BA credentials' do
+      user_with_credentials = FactoryGirl.create :user
+      sign_in user_with_credentials
 
-    expect(page).to have_text('Please add you Billapp credentials.')
+      get :index
+
+      expect(response.body).to have_text('Please fill up your Billapp credentials.')
+    end
+
+    it 'loads data when BA credentials available' do
+      user_with_credentials = FactoryGirl.create :user, :with_ba_credentials
+      sign_in user_with_credentials
+
+
+      get :index
+      invoices = Remote::Billapp::Invoice.all.map(&:number)
+
+      expect(response.body).to have_text(invoices.first)
+      expect(response.body).to have_text(invoices.second)
+    end
+
+
   end
 end
