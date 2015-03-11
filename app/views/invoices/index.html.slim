@@ -1,0 +1,7 @@
+h1 = t '.heading'
+
+- if @invoices
+  = render 'invoices_list'
+- else
+  ' Please fill up your Billapp credentials.
+  a href=edit_user_registration_path User form

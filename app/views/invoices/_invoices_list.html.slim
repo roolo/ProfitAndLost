@@ -1,0 +1,10 @@
+table.table.table-striped.table-condensed.table-hover
+  thead
+    tr
+      th Number
+
+  tbody
+    - @invoices.each do |invoice|
+      tr
+        td
+          a href=invoices_edit_path = invoice.number
