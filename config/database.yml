@@ -18,5 +18,5 @@ production:
 
 test:
   <<: *default
-  database: ProfitAndLost_test
+  database: db/development.sqlite3
 
