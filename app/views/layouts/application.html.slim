@@ -31,9 +31,10 @@ html
             = render 'application/user_nav'
 
 
-    = render 'application/flashes'
 
     .container
+      = render 'application/flashes'
+
       = yield
 
     = javascript_include_tag :application
