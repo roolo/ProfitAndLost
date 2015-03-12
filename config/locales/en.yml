@@ -25,6 +25,9 @@ en:
     index:
       heading: "ProfitAndLost"
       welcome_text: "This is ProfitAndLost"
+
   invoices:
     index:
       heading: "Invoices"
+    edit:
+      heading: "Invoice %{invoice_nr}"

@@ -24,7 +24,30 @@ describe InvoicesController, :type => :controller do
       expect(response.body).to have_text(invoices.first)
       expect(response.body).to have_text(invoices.second)
     end
+  end
 
+  describe 'edit' do
+    it 'shows invoice informations' do
+      user_with_credentials = FactoryGirl.create :user, :with_ba_credentials
+      sign_in user_with_credentials
 
+      get :edit, id: 96765
+      invoice = Remote::Billapp::Invoice.find(96765)
+
+      expect(response.body).to have_text(invoice.number)
+      invoice.lines.each do |il|
+        expect(response.body).to have_text(il.quantity)
+        expect(response.body).to have_text(il.unit_price)
+      end
+    end
+
+    it 'fails with not existing id' do
+      user_with_credentials = FactoryGirl.create :user, :with_ba_credentials
+      sign_in user_with_credentials
+
+      get :edit, id: 9
+
+      expect(response).to redirect_to invoices_path
+    end
   end
 end

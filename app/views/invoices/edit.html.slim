@@ -1,1 +1,31 @@
-' In progress
+h1 = t '.heading', invoice_nr: @invoice.number
+
+
+table.table.table-striped.table-condensed.table-hover
+  thead
+    tr
+      th Description
+      th Quantity
+      th Unit price
+      th Expenses
+
+  tbody
+    - @invoice.lines.each do |il|
+      tr
+        td = il.description
+        td = il.quantity
+        td = il.unit_price
+        td Expenses input
+
+  tfoot
+    tr
+      td colspan='4' &nbsp;
+    tr
+      th colspan='3' Total income
+      td = @invoice.total_amount
+
+    tr
+      th colspan='3' Total expenses
+      td Expenses printout
+
+

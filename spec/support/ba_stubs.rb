@@ -28,6 +28,12 @@ RSpec.configure do |config|
                   headers:  {}
       )
 
+    stub_request( :get,
+                  stub_defaults[:request][:url] + '/9.json')
+      .with(headers: stub_defaults[:request][:headers])
+      .to_return( status:   404, 
+                  body:     '', 
+                  headers:  {}
       )
   end
 end
