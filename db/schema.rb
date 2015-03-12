@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312121455) do
+ActiveRecord::Schema.define(version: 20150312151336) do
 
   create_table "expenses", force: true do |t|
     t.integer  "invoice_id"
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ba_index"
   end
 
   add_index "expenses", ["invoice_id"], name: "index_expenses_on_invoice_id"

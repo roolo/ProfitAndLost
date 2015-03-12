@@ -49,5 +49,16 @@ describe InvoicesController, :type => :controller do
 
       expect(response).to redirect_to invoices_path
     end
+
+    it 'creates local invoice once' do
+      user_with_credentials = FactoryGirl.create :user, :with_ba_credentials
+      sign_in user_with_credentials
+
+      get :edit, id: 96765
+
+      existing_invoice = Invoice.find_by ba_id: 96765
+
+      expect(existing_invoice).to_not be_nil
+    end
   end
 end

@@ -5,6 +5,8 @@ class Invoice < ActiveRecord::Base
   validates_presence_of   :ba_id, :ba_number
   validates_uniqueness_of :ba_id, :ba_number
 
+  accepts_nested_attributes_for :expenses
+
   def recalculate_expenses
     self.reload
     self.total_expenses = expenses.inject(0.0) do |memo, expense|

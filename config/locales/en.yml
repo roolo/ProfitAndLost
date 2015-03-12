@@ -31,3 +31,6 @@ en:
       heading: "Invoices"
     edit:
       heading: "Invoice %{invoice_nr}"
+  successfully_update: "Successfully update"
+  update_error: "Error occured during update"
+  update_success: "Record has been successfully updated"

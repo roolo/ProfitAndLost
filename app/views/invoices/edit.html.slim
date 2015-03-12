@@ -1,31 +1,40 @@
-h1 = t '.heading', invoice_nr: @invoice.number
+h1 = t '.heading', invoice_nr: @remote_invoice.number
 
+/= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+= simple_form_for(@invoice, url: invoice_path(@invoice), html: { method: :put }) do |f|
+  - if @remote_invoice.lines.count > 10
+    .form-actions
+      = f.button :submit, 'Update', class: 'btn-primary'
 
-table.table.table-striped.table-condensed.table-hover
-  thead
-    tr
-      th Description
-      th Quantity
-      th Unit price
-      th Expenses
-
-  tbody
-    - @invoice.lines.each do |il|
+  table.table.table-striped.table-condensed.table-hover
+    thead
       tr
-        td = il.description
-        td = il.quantity
-        td = il.unit_price
-        td Expenses input
+        th Description
+        th Quantity
+        th Unit price
+        th Expenses
 
-  tfoot
-    tr
-      td colspan='4' &nbsp;
-    tr
-      th colspan='3' Total income
-      td = @invoice.total_amount
+    tbody
+      - @remote_invoice.lines.each_with_index do |il, index|
+        tr
+          td = il.description
+          td = il.quantity
+          td = il.unit_price
+          td
+            .form-group.password.optional.user_password
+              input name="invoice[expenses_attributes][][id]" type="hidden" value=@local_expenses[index].id
+              input#user_password.password.optional.form-control name="invoice[expenses_attributes][][amount]" type="text" value=@local_expenses[index].amount
 
-    tr
-      th colspan='3' Total expenses
-      td Expenses printout
+    tfoot
+      tr
+        td colspan='4' &nbsp;
+      tr
+        th colspan='3' Total income
+        td = @remote_invoice.total_amount
 
+      tr
+        th colspan='3' Total expenses
+        td = @invoice.total_expenses
 
+  .form-actions
+    = f.button :submit, 'Update', class: 'btn-primary'
