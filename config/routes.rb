@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'invoices/index'
-  get 'invoices/edit'
+  resources :invoices
 
   devise_for :users
   get 'root/index'
