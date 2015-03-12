@@ -7,6 +7,16 @@ class Expense < ActiveRecord::Base
 
   after_save :recalculate_invoice_expenses
 
+  # def balance unit_count, unit_price, vat_price
+  # @param [Remote::Billapp::Invoice::Line] il
+  def balance il
+    counting_result = (
+      ( il.quantity * il.unit_price ) * ( ( il.vat / 100 ) + 1.0 )
+    ) - amount
+
+    counting_result.ceil(1)
+  end
+
   private
 
   def recalculate_invoice_expenses
